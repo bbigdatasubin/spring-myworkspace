@@ -27,7 +27,7 @@ public class ContactController {
 		this.repo = repo;
 	}
 
-	// GET 프로토콜: //서버주소:포트/todos
+	// GET 프로토콜: //서버주소:포트/contact
 	@GetMapping(value = "/contacts")
 	public List<Contact> getContactList() {
 		return repo.findAll();
@@ -40,7 +40,8 @@ public class ContactController {
 		// 데이터를 서버에서 처리하는 양식에 맞게 보내지 않았음.
 
 		// 이름이 PK이므로 이름만 입력되면 넘어가는걸로
-		if (contact.getName() == null || contact.getName().equals("")) {
+		if (contact.getName() == null || contact.getNum() == null || contact.getMail() == null
+				|| contact.getName().equals("")) {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
@@ -77,7 +78,7 @@ public class ContactController {
 
 	// 1건 수정
 	@PutMapping(value = "/contacts/{id}")
-	public Contact modifyContact(@PathVariable int id, @RequestBody Contact contact, HttpServletResponse res) {
+	public Contact modifyContact1(@PathVariable int id, @RequestBody Contact contact, HttpServletResponse res) {
 		// 1. 기존 데이터 조회
 		Optional<Contact> findedContact = repo.findById(id);
 
@@ -87,18 +88,32 @@ public class ContactController {
 			return null;
 		}
 
-		// 3. (요청데이터 검증2) memo 필드가 빈값이면 400에러를 띄워줌
-		if (contact.getName() == null && contact.getName().equals("")) {
+		// 3. (요청데이터 검증2) name, num, mail 필드가 빈값이면 400에러를 띄워줌
+		if (contact.getName() == null || contact.getName().equals("")) {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
 
 		// 4. 데이터베이스에서 읽어온 기존 데이터에 변경할 필드만 수정함
+
 		Contact toUpdateContact1 = findedContact.get();
 		toUpdateContact1.setName(contact.getName());
 
+		repo.save(toUpdateContact1);
+
+		Contact toUpdateContact2 = findedContact.get();
+		toUpdateContact2.setNum(contact.getNum());
+
+		repo.save(toUpdateContact2);
+
+		Contact toUpdateContact3 = findedContact.get();
+		toUpdateContact3.setMail(contact.getMail());
+
+		repo.save(toUpdateContact3);
 		// 5. 레코드 update
-		return repo.save(toUpdateContact1);
+
+		return repo.save(toUpdateContact3);
+
 	}
 
 }
