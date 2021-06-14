@@ -145,23 +145,14 @@ public class ContactController {
 
 		// 4. 데이터베이스에서 읽어온 기존 데이터에 변경할 필드만 수정함
 
-		Contact toUpdateContact1 = findedContact.get();
-		toUpdateContact1.setName(contact.getName());
+		Contact toUpdateContact = findedContact.get();
+		toUpdateContact.setName(contact.getName());
+		toUpdateContact.setNum(contact.getNum());
+		toUpdateContact.setMail(contact.getMail());
 
-		repo.save(toUpdateContact1);
-
-		Contact toUpdateContact2 = findedContact.get();
-		toUpdateContact2.setNum(contact.getNum());
-
-		repo.save(toUpdateContact2);
-
-		Contact toUpdateContact3 = findedContact.get();
-		toUpdateContact3.setMail(contact.getMail());
-
-		repo.save(toUpdateContact3);
 		// 5. 레코드 update
 
-		return repo.save(toUpdateContact3);
+		return repo.save(toUpdateContact);
 
 	}
 
