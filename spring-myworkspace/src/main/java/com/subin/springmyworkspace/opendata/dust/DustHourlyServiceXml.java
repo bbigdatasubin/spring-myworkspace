@@ -33,7 +33,7 @@ public class DustHourlyServiceXml {
 //	public void requestDustHourlyData() throws IOException {
 //		System.out.println(new Date().toLocaleString() + "--실행--");
 //		//
-//		getDustHourlyData("PM10"); // 미세
+	// getDustHourlyData("PM10"); // 미세
 //		getDustHourlyData("PM25"); // 초미세
 //	}
 
@@ -53,7 +53,7 @@ public class DustHourlyServiceXml {
 		builder.append("&serviceKey=" + serviceKey);
 
 		// 0. 요청 URL 확인
-		System.out.println(builder.toString());
+//		System.out.println(builder.toString());
 
 		// 1. URL 주소로 접속 및 데이터 읽기
 		URL url = new URL(builder.toString()); // 문자열로부터 URL 객체 생성
@@ -66,17 +66,17 @@ public class DustHourlyServiceXml {
 
 		// 3. String(XML) -> String(JSON)으로 변환
 		JSONObject jObject = XML.toJSONObject(data);
-		System.out.println(jObject.toString());
+//		System.out.println(jObject.toString());
 
 		// 4. String(JSON) -> Object로 변환을 해야함
 		// 구조가 있는 형식(Class로 찍어낸 Object)으로 변환해야 사용할 수 있음
 		// fromJson(JSON문자열, 변환할타입)
 		DustHourlyResponseXml response = new Gson().fromJson(jObject.toString(), DustHourlyResponseXml.class);
-		System.out.println(response);
+//		System.out.println(response);
 
 		// 5. 응답객체를 Entity 객체로 변환하여 저장
-		for (DustHourlyResponseXml.Item item : response.getResponse().getBody().getItems().getItem()) {
-			repo.save(new DustHourly(item));
-		}
+//		for (DustHourlyResponseXml.Item item : response.getResponse().getBody().getItems().getItem()) {
+//			repo.save(new DustHourly(item));
+//		}
 	}
 }
