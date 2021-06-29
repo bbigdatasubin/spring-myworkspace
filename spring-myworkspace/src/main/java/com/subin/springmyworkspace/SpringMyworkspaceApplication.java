@@ -2,6 +2,7 @@ package com.subin.springmyworkspace;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 // @내용: Annotation: 클래스나 필드, 메서드에 붙일 수 있음.
@@ -9,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 // @Scheduled 어노테이션으로 메서드를 실행하려면 필요
 @EnableScheduling
+@EnableCaching
 @SpringBootApplication
 public class SpringMyworkspaceApplication {
 

@@ -1,11 +1,11 @@
-package com.subin.springmyworkspace.opendata.fitness;
+package com.subin.springmyworkspace.opendata.healthdata;
 
 import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class FitnessResponse {
+public class HealthdataResponse {
 	private Response response;
 
 	@Data
@@ -27,18 +27,14 @@ public class FitnessResponse {
 	public class Item {
 		private String ageClass; // 연령대
 		private String ageDegree; // 나이
-
 		private String certGbn; // 상장구분
 		private String itemF001; // 신장
 		private String itemF002; // 체중
 		private String itemF003; // 체지방율
-		private String itemF004; // 허리둘레
 		private String itemF005; // 최저혈압
 		private String itemF006; // 최고혈압
 		private String itemF007; // 악력
-
 		private String itemF012; // 앉아윗몸앞으로굽히기
-
 		private String itemF018; // BMI
 		private String itemF019; // 교차윗몸일으키기
 		private String itemF020; // 왕복오래달리기

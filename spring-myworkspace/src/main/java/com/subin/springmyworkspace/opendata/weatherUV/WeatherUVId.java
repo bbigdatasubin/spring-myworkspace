@@ -1,4 +1,4 @@
-package com.subin.springmyworkspace.opendata.fitness;
+package com.subin.springmyworkspace.opendata.weatherUV;
 
 import java.io.Serializable;
 
@@ -9,15 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FitnessId implements Serializable {
-	/**
-	 * 
-	 */
-
+public class WeatherUVId implements Serializable {
 	private static final long serialVersionUID = 1743176488971107945L;
-
-	private String ageDegree; // 나이
-	private String itemF001; // 신장
-	private String testYm; // 측정년월
-
+	private String areaNo;
+	private String date;
 }
