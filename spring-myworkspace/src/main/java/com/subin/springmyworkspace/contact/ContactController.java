@@ -40,33 +40,6 @@ public class ContactController {
 	@GetMapping(value = "/contacts/paging")
 	public Page<Contact> getContactListPaging(@RequestParam int page, @RequestParam int size) {
 
-		/* 0번째 페이지 이후부터 JPA에서 처리하는 방법 */
-//		-- LIMIT 개수
-//		-- (정렬한 구조) 앞에서 갯수만큼의 레코드만 조회함
-//		SELECT * FROM contact ORDER BY id DESC LIMIT 10; 
-
-		/* 0번째 페이지 이후부터 OFFSET으로 처리하는 방법 */
-//		-- LIMIT 건너띄기할 개수, 조회개수
-//		-- LIMIT 10, 10 
-//		-- page: 1, size: 10
-//		-- LIMIT 20(2*10), 10
-//		-- page: 2, size: 10
-//		select * from contact order by id desc limit 10, 10;
-
-//		-- LIMIT 조회 개수 OFFSET 건너띄울 개수
-//		-- LIMIT 10 OFFSET 10: 10개 건너띄고 그 다음 10개 조회
-//		-- page:1, size:10
-//		-- LIMIT 10 OFFSET 20: 20개 건너띄고 그 다음 10개 조회
-//		-- page:2, size:10
-//		select * from contact order by id desc limit 10 offset 10;
-
-		/* 전체 페이지 수 구하는 방법 */
-//		-- COUNT(컬럼): 전체 레코드 개수를 조회
-//		-- 컬럼에는 clustered index 컬럼이 아니면 성능이 떨어짐
-//		-- 잘모르면 *를 써라.
-//		select count(id) from contact;
-//		select count(*) from contact;
-
 		return repo.findAll(PageRequest.of(page, size, Sort.by("id").descending()));
 	}
 

@@ -48,7 +48,7 @@ public class WeatherUVService {
 		builder.append("&pageNo=1");
 		builder.append("&dataType=JSON");
 		builder.append("&areaNo=" + areaNo);
-		builder.append("&time=2021062906");
+		builder.append("&time=2021070106");
 		builder.append("&requestCode=A41");
 
 		System.out.println(builder.toString());
